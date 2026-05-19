@@ -29,6 +29,15 @@ pdf_content.txt
 Proyecto_Final_App_Tema_Libre.pdf
 read_pdf.py
 reset_admin.py
+pdf_content_utf8.txt
+temp_odt/
+temp_odt_update/
+update_odt.py
+
+# Entregables y configuraciones locales
+*.odt
+estacionamiento_db.sql
+vercel.json
 
 # OS
 .DS_Store
