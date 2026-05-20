@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Funcionamiento - ParkSystem</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            padding: 3rem;
+            min-height: 100vh;
+        }
+        .header { text-align: center; margin-bottom: 3rem; }
+        .header h1 { color: #0f172a; font-size: 2.2rem; letter-spacing: -0.5px; margin-bottom: 0.5rem; }
+        .header p { color: #64748b; font-size: 1.1rem; }
+        
+        .flow-container {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .flow-column {
+            background: #ffffff;
+            border-radius: 1rem;
+            padding: 2rem;
+            width: 300px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            border-top: 5px solid #3b82f6;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .flow-column h2 {
+            font-size: 1.25rem;
+            text-align: center;
+            color: #334155;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .card {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            position: relative;
+        }
+
+        /* Card Types */
+        .card.screen { border-left: 5px solid #3b82f6; }
+        .card.action { border-left: 5px solid #f59e0b; }
+        .card.data { border-left: 5px solid #10b981; }
+
+        .card-type {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #64748b;
+            margin-bottom: 0.35rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: #475569;
+            line-height: 1.4;
+        }
+
+        .arrow {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 1.5rem;
+            line-height: 0.5;
+        }
+
+        .legend {
+            margin-top: 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #475569; font-weight: 500; }
+        .box { width: 18px; height: 18px; border-radius: 4px; }
+        .box.screen { background: #3b82f6; }
+        .box.action { background: #f59e0b; }
+        .box.data { background: #10b981; }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Diagrama de Flujo y Funcionamiento: ParkSystem</h1>
+        <p>Mapeo de pantallas, interacción de usuario (formularios) y procesamiento de datos</p>
+    </div>
+
+    <div class="flow-container">
+        
+        <!-- Column 1: Autenticación -->
+        <div class="flow-column">
+            <h2>1. Autenticación</h2>
+            <div class="card screen">
+                <div class="card-type">Pantalla Inicial</div>
+                <div class="card-title">Login</div>
+                <div class="card-desc">Vista inicial pública del sistema.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card action">
+                <div class="card-type">Formulario / Acción</div>
+                <div class="card-title">Completar Formulario</div>
+                <div class="card-desc">El usuario ingresa correo y contraseña, hace clic en "Entrar".</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card data">
+                <div class="card-type">Entrada / Salida de Datos</div>
+                <div class="card-title">Validación en DB</div>
+                <div class="card-desc"><b>IN:</b> Credenciales.<br><b>OUT:</b> Token de Sesión y Rol de Usuario asignado.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card screen">
+                <div class="card-type">Pantalla Principal</div>
+                <div class="card-title">Dashboard</div>
+                <div class="card-desc">Redirección exitosa. Muestra resumen operativo y menú general.</div>
+            </div>
+        </div>
+
+        <!-- Column 2: Operación Diaria -->
+        <div class="flow-column">
+            <h2>2. Operación de Estancias</h2>
+            <div class="card screen">
+                <div class="card-type">Pantalla / Listado</div>
+                <div class="card-title">Módulo de Estancias</div>
+                <div class="card-desc">Tabla con el listado de vehículos actualmente estacionados.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card action">
+                <div class="card-type">Formulario / Acción</div>
+                <div class="card-title">Registrar Entrada</div>
+                <div class="card-desc">El usuario llena el campo de placa y hace clic en "Ingresar".</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card data">
+                <div class="card-type">Entrada / Salida de Datos</div>
+                <div class="card-title">Generación de Ticket</div>
+                <div class="card-desc"><b>IN:</b> Placa y Hora actual.<br><b>OUT:</b> Registro en BD asignado a un cajón.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card action">
+                <div class="card-type">Acción del Usuario</div>
+                <div class="card-title">Registrar Salida</div>
+                <div class="card-desc">El usuario selecciona un vehículo del listado y cobra salida.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card data">
+                <div class="card-type">Entrada / Salida de Datos</div>
+                <div class="card-title">Cálculo de Tarifa</div>
+                <div class="card-desc"><b>IN:</b> Hora de salida.<br><b>OUT:</b> Costo calculado por tiempo e inserción en tabla de pagos.</div>
+            </div>
+        </div>
+
+        <!-- Column 3: Clientes y Pensiones -->
+        <div class="flow-column">
+            <h2>3. Pensiones y Clientes</h2>
+            <div class="card screen">
+                <div class="card-type">Pantalla / Listado</div>
+                <div class="card-title">Módulo de Pensiones</div>
+                <div class="card-desc">Listado de contratos activos y clientes recurrentes.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card action">
+                <div class="card-type">Formulario / Acción</div>
+                <div class="card-title">Alta de Cliente</div>
+                <div class="card-desc">El usuario llena formulario de contacto y vincula una placa.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card data">
+                <div class="card-type">Entrada / Salida de Datos</div>
+                <div class="card-title">Registro en DB</div>
+                <div class="card-desc"><b>IN:</b> Datos personales.<br><b>OUT:</b> Cliente y Vehículo guardados.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card action">
+                <div class="card-type">Formulario / Acción</div>
+                <div class="card-title">Renovar Pensión</div>
+                <div class="card-desc">El usuario asigna un periodo (meses) y registra el pago.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card data">
+                <div class="card-type">Entrada / Salida de Datos</div>
+                <div class="card-title">Actualización Vigencia</div>
+                <div class="card-desc"><b>IN:</b> Monto cobrado.<br><b>OUT:</b> Nueva fecha de vencimiento en sistema.</div>
+            </div>
+        </div>
+
+        <!-- Column 4: Administración -->
+        <div class="flow-column">
+            <h2>4. Reportes Administrativos</h2>
+            <div class="card screen">
+                <div class="card-type">Pantalla / Módulo</div>
+                <div class="card-title">Reportes y Finanzas</div>
+                <div class="card-desc">Tablas de datos y gráficas. Acceso exclusivo Administrador.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card action">
+                <div class="card-type">Formulario / Acción</div>
+                <div class="card-title">Filtrar Información</div>
+                <div class="card-desc">El usuario selecciona un rango de fechas en el formulario superior.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card data">
+                <div class="card-type">Entrada / Salida de Datos</div>
+                <div class="card-title">Consulta Analítica</div>
+                <div class="card-desc"><b>IN:</b> Parámetros Fecha Inicio y Fin.<br><b>OUT:</b> Sumatoria de ingresos totales y detalle de tickets.</div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="card screen">
+                <div class="card-type">Pantalla / Detalle</div>
+                <div class="card-title">Visualización Dinámica</div>
+                <div class="card-desc">El DOM se actualiza mostrando las gráficas y la tabla de resultados.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="legend">
+        <div class="legend-item"><div class="box screen"></div> Interfaz (Pantallas / Listados)</div>
+        <div class="legend-item"><div class="box action"></div> Interacción Humana (Formularios / Clics)</div>
+        <div class="legend-item"><div class="box data"></div> Lógica del Sistema (Entradas / Salidas)</div>
+    </div>
+</body>
+</html>
